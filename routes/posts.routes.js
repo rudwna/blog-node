@@ -1,6 +1,6 @@
-import { Router } from 'express'
+import { Router } from "express";
 import Post from "../post.js";
-const router = Router()
+const router = Router();
 
 //TODO: Add auth on write
 
@@ -12,9 +12,9 @@ router.get("/", async (_, res) => {
 
 router.post("/", async (req, res) => {
   const payload = req.body;
-  const post = new Post(payload);
+  const post = new Post({ ...payload, createdAt: Date.now() });
   await post.save();
-  res.status(201).end();
+  res.status(201).json(post);
 });
 
 router.put("/:id", async (req, res) => {
@@ -35,4 +35,4 @@ router.delete("/:id", async (req, res) => {
   res.status(204).end();
 });
 
-export default router
+export default router;

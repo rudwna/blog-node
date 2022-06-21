@@ -8,6 +8,7 @@ const postSchema = new Schema(
     name: String,
     status: Number,
     content: String,
+    createdAt: Date,
   },
   { versionKey: false }
 );
