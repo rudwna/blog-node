@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import generator from "generate-password";
 import bcrypt from "bcrypt";
 
+const hashRounds = 10;
+
 async function signin(req, res) {
   const { username, password } = req.body;
   if (!(username && password)) {
