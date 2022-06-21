@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "1c264995-9364-487a-b3b8-40fef42eeead",
+		"name": "blog-node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/posts/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJiMjNjNzVjYjBiMzdjZjYyNjE1ZmYzIiwidXNlcm5hbWUiOiJydWR3bmEiLCJpYXQiOjE2NTU4NDgwNzcsImV4cCI6MTY1NTg1MTY3N30.-ilu7nThUhBXJAk9by0wlFsB9Y4NxGjCclrb69AV2qw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"post title\",\r\n  \"status\": 1,\r\n  \"content\": \"content\",\r\n  \"categories\": \"nodejs,express\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/posts/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJiMjNjNzVjYjBiMzdjZjYyNjE1ZmYzIiwidXNlcm5hbWUiOiJydWR3bmEiLCJpYXQiOjE2NTU4NDgwNzcsImV4cCI6MTY1NTg1MTY3N30.-ilu7nThUhBXJAk9by0wlFsB9Y4NxGjCclrb69AV2qw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"post title\",\r\n  \"status\": 1,\r\n  \"content\": \"content\",\r\n  \"categories\": \"nodejs,express\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/posts/62b23cbecb0b37cf62615ffa",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"62b23cbecb0b37cf62615ffa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjJiMjIzYWUyZWRhMmNlZTE4MzFhNzMzIiwidXNlcm5hbWUiOiJyd3J3IiwiaWF0IjoxNjU1ODQ1OTY2LCJleHAiOjE2NTU4NDk1NjZ9.IFdgr4zUjnOa92me_8IqTU8xtKU6PkKI472v35Bmre8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/posts/62b23cbecb0b37cf62615ffa",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"62b23cbecb0b37cf62615ffa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"rw\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"rw\",\r\n  \"password\": \"qeVOYopYKF\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
