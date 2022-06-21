@@ -9,6 +9,7 @@ const postSchema = new Schema(
     status: Number,
     content: String,
     createdAt: Date,
+    categories: String,
   },
   { versionKey: false }
 );
