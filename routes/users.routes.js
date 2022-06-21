@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import generator from "generate-password";
 import bcrypt from "bcrypt";
 const router = Router();
-const secret = "secret";
 const hashRounds = 10;
 
 router.post("/signin", async (req, res) => {
@@ -16,7 +15,7 @@ router.post("/signin", async (req, res) => {
   const user = await User.findOne({ username: username });
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    const token = jwt.sign({ user_id: user._id, username }, secret, {
+    const token = jwt.sign({ user_id: user._id, username }, req.app.locals.secret, {
       expiresIn: "1h",
     });
 
