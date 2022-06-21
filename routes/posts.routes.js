@@ -1,5 +1,5 @@
 import { Router } from "express";
-import Post from "../post.js";
+import Post from "../models/post.js";
 import authenticateToken from "../middlewares/authenticateToken.js";
 const router = Router();
 
@@ -25,15 +25,14 @@ router.put("/:id", authenticateToken, async (req, res) => {
   const payload = req.body;
   const { id } = req.params;
 
-
-  const post = await Post.findById(id)
-  console.log(post.author.toString())
-  console.log(req.user.user_id)
+  const post = await Post.findById(id);
+  console.log(post.author.toString());
+  console.log(req.user.user_id);
 
   if (!post) {
-    return res.status(404).end()
+    return res.status(404).end();
   } else if (post.author.toString() != req.user.user_id) {
-    return res.status(403).end()
+    return res.status(403).end();
   }
 
   const updatedPost = await Post.findByIdAndUpdate(
@@ -48,11 +47,11 @@ router.put("/:id", authenticateToken, async (req, res) => {
 router.delete("/:id", authenticateToken, async (req, res) => {
   const { id } = req.params;
 
-  const post = await Post.findById(id)
+  const post = await Post.findById(id);
   if (!post) {
-    return res.status(404).end()
+    return res.status(404).end();
   } else if (post.author != req.user.user_id) {
-    return res.status(403).end()
+    return res.status(403).end();
   }
 
   await Post.findByIdAndDelete(id);
