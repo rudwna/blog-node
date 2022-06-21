@@ -2,8 +2,10 @@ import { Router } from "express";
 import User from "../user.js";
 import jwt from "jsonwebtoken";
 import generator from "generate-password";
+import bcrypt from "bcrypt";
 const router = Router();
 const secret = "secret";
+const hashRounds = 10;
 
 router.post("/signin", async (req, res) => {
   const { username, password } = req.body;
@@ -12,11 +14,15 @@ router.post("/signin", async (req, res) => {
   }
 
   const user = await User.findOne({ username: username });
-  if (user && password == user.password) {
+
+  if (user && (await bcrypt.compare(password, user.password))) {
     const token = jwt.sign({ user_id: user._id, username }, secret, {
       expiresIn: "1h",
     });
-    res.json({ ...user.toObject(), token: token });
+
+    const { password, ...userWithoutPassword } = user.toObject();
+
+    res.json({ ...userWithoutPassword, token: token });
   } else {
     res.status(401).json({ error: "Invalid username or password" });
   }
@@ -24,19 +30,19 @@ router.post("/signin", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   const payload = req.body;
-
   const existingUser = await User.findOne(payload);
 
-  //TODO: Store hashed password
   if (!existingUser) {
+    const generatedPassword = generator.generate({ numbers: true });
+    const encryptedPassword = await bcrypt.hash(generatedPassword, hashRounds);
     const user = new User({
       ...payload,
-      password: generator.generate({ numbers: true }),
+      password: encryptedPassword,
     });
     await user.save();
 
-    // Unsecure way of returning password
-    res.json(user);
+    // Unsecure way of returning password but should be ok for demo app
+    res.json({ ...user.toObject(), password: generatedPassword });
   } else {
     res.status(409).json({ error: "Username already exists" });
   }
