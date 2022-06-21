@@ -23,8 +23,6 @@ async function update(req, res) {
   const { id } = req.params;
 
   const post = await Post.findById(id);
-  console.log(post.author.toString());
-  console.log(req.user.user_id);
 
   if (!post) {
     return res.status(404).end();
