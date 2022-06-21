@@ -3,6 +3,7 @@ import { mongoose } from "mongoose";
 import postsRoutes from "./routes/posts.routes.js";
 import usersRoutes from "./routes/users.routes.js"
 const { connect } = mongoose;
+
 const app = express();
 const port = 3000;
 

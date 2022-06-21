@@ -2,6 +2,7 @@ import { Router } from 'express'
 import Post from "../post.js";
 const router = Router()
 
+//TODO: Add pagination
 router.get("/", async (_, res) => {
   const posts = await Post.find();
   res.json(posts);
