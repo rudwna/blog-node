@@ -10,6 +10,7 @@ const postSchema = new Schema(
     content: String,
     createdAt: Date,
     categories: String,
+    author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   },
   { versionKey: false }
 );
