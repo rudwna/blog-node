@@ -2,6 +2,8 @@ import { Router } from 'express'
 import Post from "../post.js";
 const router = Router()
 
+//TODO: Add auth on write
+
 //TODO: Add pagination
 router.get("/", async (_, res) => {
   const posts = await Post.find();
